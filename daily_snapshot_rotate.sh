@@ -1,70 +1,67 @@
 #!/bin/bash
-# ----------------------------------------------------------------------
-# mikes handy rotating-filesystem-snapshot utility: daily snapshots
-# ----------------------------------------------------------------------
-# intended to be run daily as a cron job when hourly.3 contains the
-# midnight (or whenever you want) snapshot; say, 13:00 for 4-hour snapshots.
-# ----------------------------------------------------------------------
 
-unset PATH
+unset PATH	# Unset the path for security
 
 # ------------- system commands used by this script --------------------
 ID=/usr/bin/id;
 ECHO=/bin/echo;
-
 MOUNT=/bin/mount;
 RM=/bin/rm;
 MV=/bin/mv;
 CP=/bin/cp;
+TOUCH=/bin/touch;
+RSYNC=/usr/bin/rsync;
 
 # ------------- file locations -----------------------------------------
-
-MOUNT_DEVICE=/dev/hdb1;
-SNAPSHOT_RW=/root/snapshot;
+SNAPSHOT_RW=/root/backups/snapshot;
 
 # ------------- the script itself --------------------------------------
-
 # make sure we're running as root
-if (( `$ID -u` != 0 )); then { $ECHO "Sorry, must be root.  Exiting..."; exit; } fi
-
-# attempt to remount the RW mount point as RW; else abort
-$MOUNT -o remount,rw $MOUNT_DEVICE $SNAPSHOT_RW ;
-if (( $? )); then
-{
-	$ECHO "snapshot: could not remount $SNAPSHOT_RW readwrite";
-	exit;
-}
-fi;
-
+if (( `$ID -u` != 0 )); then { $ECHO "Sorry, must be root.  Exiting..."; exit 1; } fi
 
 # step 1: delete the oldest snapshot, if it exists:
-if [ -d $SNAPSHOT_RW/home/daily.2 ] ; then			\
-$RM -rf $SNAPSHOT_RW/home/daily.2 ;				\
+if [ -d $SNAPSHOT_RW/daily.7 ] ; then			\
+	$RM -rf $SNAPSHOT_RW/daily.7 ;				\
 fi ;
 
 # step 2: shift the middle snapshots(s) back by one, if they exist
-if [ -d $SNAPSHOT_RW/home/daily.1 ] ; then			\
-$MV $SNAPSHOT_RW/home/daily.1 $SNAPSHOT_RW/home/daily.2 ;	\
-fi;
-if [ -d $SNAPSHOT_RW/home/daily.0 ] ; then			\
-$MV $SNAPSHOT_RW/home/daily.0 $SNAPSHOT_RW/home/daily.1;	\
+if [ -d $SNAPSHOT_RW/daily.6 ] ; then			\
+	$MV $SNAPSHOT_RW/daily.6 $SNAPSHOT_RW/daily.7 ;	\
 fi;
 
-# step 3: make a hard-link-only (except for dirs) copy of
-# hourly.3, assuming that exists, into daily.0
-if [ -d $SNAPSHOT_RW/home/hourly.3 ] ; then			\
-$CP -al $SNAPSHOT_RW/home/hourly.3 $SNAPSHOT_RW/home/daily.0 ;	\
+if [ -d $SNAPSHOT_RW/daily.5 ] ; then			\
+	$MV $SNAPSHOT_RW/daily.5 $SNAPSHOT_RW/daily.6 ;	\
 fi;
 
-# note: do *not* update the mtime of daily.0; it will reflect
-# when hourly.3 was made, which should be correct.
+if [ -d $SNAPSHOT_RW/daily.4 ] ; then			\
+	$MV $SNAPSHOT_RW/daily.4 $SNAPSHOT_RW/daily.5 ;	\
+fi;
 
-# now remount the RW snapshot mountpoint as readonly
+if [ -d $SNAPSHOT_RW/daily.3 ] ; then			\
+	$MV $SNAPSHOT_RW/daily.3 $SNAPSHOT_RW/daily.4 ;	\
+fi;
 
-$MOUNT -o remount,ro $MOUNT_DEVICE $SNAPSHOT_RW ;
-if (( $? )); then
-{
-	$ECHO "snapshot: could not remount $SNAPSHOT_RW readonly";
-	exit;
-} fi;
+if [ -d $SNAPSHOT_RW/daily.2 ] ; then			\
+	$MV $SNAPSHOT_RW/daily.2 $SNAPSHOT_RW/daily.3 ;	\
+fi;
+
+if [ -d $SNAPSHOT_RW/daily.1 ] ; then			\
+	$MV $SNAPSHOT_RW/daily.1 $SNAPSHOT_RW/daily.2 ;	\
+fi;
+
+if [ -d $SNAPSHOT_RW/daily.0 ] ; then			\
+	$MV $SNAPSHOT_RW/daily.0 $SNAPSHOT_RW/daily.1
+fi;
+
+# step 3: make a hard-link-only (except for dirs) copy of the latest snapshot,
+# if that exists
+${CP} \
+	-al \
+	$SNAPSHOT_RW/hourly.3 \
+        $SNAPSHOT_RW/daily.0 ;
+
+# step 5: update the mtime of daily.0 to reflect the snapshot time
+$TOUCH $SNAPSHOT_RW/daily.0 ;
+
+exit 0
 
