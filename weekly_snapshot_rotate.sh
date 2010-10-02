@@ -20,48 +20,36 @@ SNAPSHOT_RW=/root/backups/snapshot;
 if (( `$ID -u` != 0 )); then { $ECHO "Sorry, must be root.  Exiting..."; exit 1; } fi
 
 # step 1: delete the oldest snapshot, if it exists:
-if [ -d $SNAPSHOT_RW/daily.7 ] ; then			\
-	$RM -rf $SNAPSHOT_RW/daily.7 ;				\
+if [ -d $SNAPSHOT_RW/weekly.4 ] ; then			\
+	$RM -rf $SNAPSHOT_RW/weekly.4 ;				\
 fi ;
 
 # step 2: shift the middle snapshots(s) back by one, if they exist
-if [ -d $SNAPSHOT_RW/daily.6 ] ; then			\
-	$MV $SNAPSHOT_RW/daily.6 $SNAPSHOT_RW/daily.7 ;	\
+if [ -d $SNAPSHOT_RW/weekly.3 ] ; then			\
+	$MV $SNAPSHOT_RW/weekly.3 $SNAPSHOT_RW/weekly.4 ;	\
 fi;
 
-if [ -d $SNAPSHOT_RW/daily.5 ] ; then			\
-	$MV $SNAPSHOT_RW/daily.5 $SNAPSHOT_RW/daily.6 ;	\
+if [ -d $SNAPSHOT_RW/weekly.2 ] ; then			\
+	$MV $SNAPSHOT_RW/weekly.2 $SNAPSHOT_RW/weekly.3 ;	\
 fi;
 
-if [ -d $SNAPSHOT_RW/daily.4 ] ; then			\
-	$MV $SNAPSHOT_RW/daily.4 $SNAPSHOT_RW/daily.5 ;	\
+if [ -d $SNAPSHOT_RW/weekly.1 ] ; then			\
+	$MV $SNAPSHOT_RW/weekly.1 $SNAPSHOT_RW/weekly.2 ;	\
 fi;
 
-if [ -d $SNAPSHOT_RW/daily.3 ] ; then			\
-	$MV $SNAPSHOT_RW/daily.3 $SNAPSHOT_RW/daily.4 ;	\
-fi;
-
-if [ -d $SNAPSHOT_RW/daily.2 ] ; then			\
-	$MV $SNAPSHOT_RW/daily.2 $SNAPSHOT_RW/daily.3 ;	\
-fi;
-
-if [ -d $SNAPSHOT_RW/daily.1 ] ; then			\
-	$MV $SNAPSHOT_RW/daily.1 $SNAPSHOT_RW/daily.2 ;	\
-fi;
-
-if [ -d $SNAPSHOT_RW/daily.0 ] ; then			\
-	$MV $SNAPSHOT_RW/daily.0 $SNAPSHOT_RW/daily.1
+if [ -d $SNAPSHOT_RW/weekly.0 ] ; then			\
+	$MV $SNAPSHOT_RW/weekly.0 $SNAPSHOT_RW/weekly.1
 fi;
 
 # step 3: make a hard-link-only (except for dirs) copy of the latest snapshot,
 # if that exists
 ${CP} \
 	-al \
-	$SNAPSHOT_RW/hourly.3 \
-        $SNAPSHOT_RW/daily.0 ;
+	$SNAPSHOT_RW/daily.7 \
+        $SNAPSHOT_RW/weekly.0 ;
 
-# step 5: update the mtime of daily.0 to reflect the snapshot time
-$TOUCH $SNAPSHOT_RW/daily.0 ;
+# step 5: update the mtime of weekly.0 to reflect the snapshot time
+$TOUCH $SNAPSHOT_RW/weekly.0 ;
 
 exit 0
 
