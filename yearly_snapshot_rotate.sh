@@ -83,7 +83,9 @@ ${CP} \
         $SNAPSHOT_RW/yearly/yearly.0 ;
 
 # step 5: update the mtime of yearly.0 to reflect the snapshot time
-$TOUCH $SNAPSHOT_RW/yearly/yearly.0 ;
+if [ -d $SNAPSHOT_RW/yearly/yearly.0 ] ; then                   \
+	$TOUCH $SNAPSHOT_RW/yearly/yearly.0 ;	\
+fi;
 
 exit 0
 

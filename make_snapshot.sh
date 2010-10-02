@@ -55,7 +55,9 @@ $RSYNC \
         $SNAPSHOT_RW/hourly/hourly.0/ ;
 
 # step 5: update the mtime of hourly.0 to reflect the snapshot time
-$TOUCH $SNAPSHOT_RW/hourly/hourly.0 ;
+if [ -d $SNAPSHOT_RW/hourly/hourly.0 ] ; then                   \
+	$TOUCH $SNAPSHOT_RW/hourly/hourly.0 ;	\
+fi;
 
 exit 0
 

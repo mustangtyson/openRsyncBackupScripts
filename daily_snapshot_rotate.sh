@@ -63,7 +63,9 @@ ${CP} \
         $SNAPSHOT_RW/daily/daily.0 ;
 
 # step 5: update the mtime of daily.0 to reflect the snapshot time
-$TOUCH $SNAPSHOT_RW/daily/daily.0 ;
+if [ -d $SNAPSHOT_RW/daily/daily.0 ] ; then                     \
+	$TOUCH $SNAPSHOT_RW/daily/daily.0 ;	\
+fi;
 
 exit 0
 

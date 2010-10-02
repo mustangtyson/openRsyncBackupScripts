@@ -51,7 +51,9 @@ ${CP} \
         $SNAPSHOT_RW/weekly/weekly.0 ;
 
 # step 5: update the mtime of weekly.0 to reflect the snapshot time
-$TOUCH $SNAPSHOT_RW/weekly/weekly.0 ;
+if [ -d $SNAPSHOT_RW/weekly/weekly.0 ] ; then                   \
+	$TOUCH $SNAPSHOT_RW/weekly/weekly.0 ;	\
+fi;
 
 exit 0
 

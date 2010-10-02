@@ -83,7 +83,9 @@ ${CP} \
         $SNAPSHOT_RW/monthly/monthly.0 ;
 
 # step 5: update the mtime of monthly.0 to reflect the snapshot time
-$TOUCH $SNAPSHOT_RW/monthly/monthly.0 ;
+if [ -d $SNAPSHOT_RW/monthly/monthly.0 ] ; then                 \
+	$TOUCH $SNAPSHOT_RW/monthly/monthly.0 ;	\
+fi;
 
 exit 0
 
