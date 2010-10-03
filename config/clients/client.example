@@ -3,5 +3,5 @@
 # Example openRsyncBackupScripts client file
 #REMOTE_USER=myuser
 #REMOTE_HOST=myhostname
-#REMOTE_PATHS=/home
-#EXCLUDE_PATHS=/dev
+#REMOTE_PATH=/home
+#EXCLUDE_PATH=/dev
