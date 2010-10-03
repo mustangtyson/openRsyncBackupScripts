@@ -1,8 +1,8 @@
 # m h  dom mon dow   command
 
 # openRsyncBackupScripts configuration
-@hourly		/root/openRsyncBackupScripts/scripts/make_snapshot.sh
-@daily		/root/openRsyncBackupScripts/scripts/daily_snapshot_rotate.sh
-@weekly		/root/openRsyncBackupScripts/scripts/weekly_snapshot_rotate.sh
-@monthly	/root/openRsyncBackupScripts/scripts/monthly_snapshot_rotate.sh
-@yearly		/root/openRsyncBackupScripts/scripts/yearly_snapshot_rotate.sh
+@hourly         ~/openRsyncBackupScripts/scripts/make_snapshot.sh
+@daily          ~/openRsyncBackupScripts/scripts/daily_snapshot_rotate.sh
+@weekly         ~/openRsyncBackupScripts/scripts/weekly_snapshot_rotate.sh
+@monthly        ~/openRsyncBackupScripts/scripts/monthly_snapshot_rotate.sh
+@yearly         ~/openRsyncBackupScripts/scripts/yearly_snapshot_rotate.sh

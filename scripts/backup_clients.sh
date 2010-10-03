@@ -3,7 +3,7 @@ RSYNC=/usr/bin/rsync
 SSH=/usr/bin/ssh
 MKDIR=/bin/mkdir
 
-BACKUP_DIR=/root/backups/backup #You must set this to your backup path
+BACKUP_DIR=/mnt/backups/backup #TODO You must set this to your backup path
 
 # Figure out where to save the backup
 LOCAL_PATH=${BACKUP_DIR}/${RHOST}/
