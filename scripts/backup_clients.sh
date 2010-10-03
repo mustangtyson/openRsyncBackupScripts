@@ -5,9 +5,9 @@ MKDIR=/bin/mkdir
 
 BACKUP_DIR=/mnt/backups/backup #TODO You must set this to your backup path
 
-# . ../config/clients/tsmith@wopr
 
-cd ../config/clients
+cd ~/openRsyncBackupScripts/config/clients
+
 for file in `dir -d *` ; do
 	echo "Back up ${file} started"
 
