@@ -8,7 +8,7 @@ MKDIR=/bin/mkdir
 lf=/tmp/openRsyncBackupScriptsPidLockFile
 
 # User editable variables
-BACKUP_DIR=/mnt/backups/backup #TODO You must set this to your backup path
+BACKUP_DIR=/root/backups/backup #TODO You must set this to your backup path
 
 
 # Make sure that we are not already running
