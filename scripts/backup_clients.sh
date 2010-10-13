@@ -1,4 +1,11 @@
 #!/bin/bash
+
+# TODO Overall ideas
+# * log everything to /var/log/messages
+# * add the ability to limit bandwith per client (lan, wifi, internet)
+
+
+
 # System executables
 RSYNC=/usr/bin/rsync
 SSH=/usr/bin/ssh
@@ -8,7 +15,7 @@ MKDIR=/bin/mkdir
 lf=/tmp/openRsyncBackupScriptsPidLockFile
 
 # User editable variables
-BACKUP_DIR=/root/backups/backup #TODO You must set this to your backup path
+BACKUP_DIR=/root/backups/backup #TODO You must set this to your backup path (This should be in a config file
 
 
 # Make sure that we are not already running
@@ -28,6 +35,9 @@ for file in `dir -d *` ; do
 
 	# Import the files variables
 	. ${file}
+
+	# Sanity check the target to be backed up
+	# TODO
 
 	# Figure out where to save the backup
 	LOCAL_PATH=${BACKUP_DIR}/${REMOTE_HOST}
