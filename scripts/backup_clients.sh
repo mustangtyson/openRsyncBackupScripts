@@ -31,7 +31,10 @@ for file in `dir -d *` ; do
 	echo "Back up ${file} started"
 
 	# CLEAR THE VARIABLES
-	# TODO
+	unset REMOTE_USER
+	unset REMOTE_HOST
+	unset REMOTE_PATH
+	unset EXCLUDE_PATH
 
 	# Import the files variables
 	. ${file}
