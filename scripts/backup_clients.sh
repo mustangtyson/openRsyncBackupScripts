@@ -40,18 +40,22 @@ for file in `dir -d *` ; do
 	. ${file}
 
 	# Sanity check the target to be backed up
-	# TODO
+	if [ ! -z ${REMOTE_HOST} ]
+	then
+		# Figure out where to save the backup
+		LOCAL_PATH=${BACKUP_DIR}/${REMOTE_HOST}
 
-	# Figure out where to save the backup
-	LOCAL_PATH=${BACKUP_DIR}/${REMOTE_HOST}
+		# Make sure the dir to backup to exists
+		${MKDIR} -p ${LOCAL_PATH}${REMOTE_PATH}
 
-	# Make sure the dir to backup to exists
-	${MKDIR} -p ${LOCAL_PATH}${REMOTE_PATH}
-
-	# Perform the backup
-	${RSYNC} -az -e ${SSH} ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_PATH} ${LOCAL_PATH}${REMOTE_PATH}/../
+		# Perform the backup
+		${RSYNC} -azv -e ${SSH} ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_PATH} ${LOCAL_PATH}${REMOTE_PATH}/../
+	else
+		echo "Client file variables incorrectly set, not backing up"
+        fi
 
 	echo "Back up ${file} finished"
+	echo ""
 done
 
 exit 0
