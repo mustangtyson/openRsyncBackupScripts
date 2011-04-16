@@ -22,7 +22,7 @@ BACKUP_RW=/root/backups/backup;
 $LOGGER "$0 started"
 
 # make sure we're running as root
-if (( `$ID -u` != 0 )); then { $ECHO "Sorry, must be root.  Exiting..."; exit 1; } fi
+if (( `$ID -u` != 0 )); then { $LOGGER "Sorry, must be root.  Exiting..."; exit 1; } fi
 
 # step 1: delete the oldest snapshot, if it exists:
 if [ -d $SNAPSHOT_RW/hourly/hourly.3 ] ; then			\
