@@ -7,9 +7,10 @@
 
 
 # System executables
-RSYNC=/usr/bin/rsync
-SSH=/usr/bin/ssh
-MKDIR=/bin/mkdir
+RSYNC=/usr/bin/rsync;
+SSH=/usr/bin/ssh;
+MKDIR=/bin/mkdir;
+LOGGER=/usr/bin/logger;
 
 # Lock file to make sure that the script is not running more than once.
 lf=/tmp/openRsyncBackupScriptsPidLockFile
@@ -22,6 +23,7 @@ BACKUP_DIR=/root/backups/backup #TODO You must set this to your backup path (Thi
 touch $lf
 read lastPID < $lf
 [ ! -z "$lastPID" -a -d /proc/$lastPID ] && exit 1
+$LOGGER "$0 started"
 
 # Start of the backups
 cd ~/openRsyncBackupScripts/config/clients
@@ -55,6 +57,8 @@ for file in `dir -d *` ; do
 
 	logger "Back up ${file} finished"
 done
+
+$LOGGER "$0 done"
 
 exit 0
 

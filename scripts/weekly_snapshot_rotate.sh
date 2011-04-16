@@ -5,6 +5,7 @@ unset PATH	# Unset the path for security
 # ------------- system commands used by this script --------------------
 ID=/usr/bin/id;
 ECHO=/bin/echo;
+LOGGER=/usr/bin/logger;
 MOUNT=/bin/mount;
 RM=/bin/rm;
 MV=/bin/mv;
@@ -17,6 +18,8 @@ MKDIR=/bin/mkdir
 SNAPSHOT_RW=/root/backups/snapshot;
 
 # ------------- the script itself --------------------------------------
+$LOGGER "$0 started"
+
 # make sure we're running as root
 if (( `$ID -u` != 0 )); then { $ECHO "Sorry, must be root.  Exiting..."; exit 1; } fi
 
@@ -54,6 +57,8 @@ ${CP} \
 if [ -d $SNAPSHOT_RW/weekly/weekly.0 ] ; then                   \
 	$TOUCH $SNAPSHOT_RW/weekly/weekly.0 ;	\
 fi;
+
+$LOGGER "$0 done"
 
 exit 0
 

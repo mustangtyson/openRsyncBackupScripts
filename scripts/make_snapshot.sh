@@ -19,7 +19,7 @@ SNAPSHOT_RW=/root/backups/snapshot;
 BACKUP_RW=/root/backups/backup;
 
 # ------------- the script itself --------------------------------------
-$LOGGER "$0 running"
+$LOGGER "$0 started"
 
 # make sure we're running as root
 if (( `$ID -u` != 0 )); then { $ECHO "Sorry, must be root.  Exiting..."; exit 1; } fi
