@@ -50,7 +50,7 @@ for file in `dir -d *` ; do
 		${MKDIR} -p ${LOCAL_PATH}${REMOTE_PATH}
 
 		# Perform the backup
-		${RSYNC} -azv -e ${SSH} ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_PATH} ${LOCAL_PATH}${REMOTE_PATH}/../
+		${RSYNC} -azv --delete -e ${SSH} ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_PATH} ${LOCAL_PATH}${REMOTE_PATH}/../
 	else
 		logger "Client file variables incorrectly set, not backing up"
         fi
