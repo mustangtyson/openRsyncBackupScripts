@@ -21,14 +21,13 @@ BACKUP_DIR=/root/backups/backup #TODO You must set this to your backup path (Thi
 # Make sure that we are not already running
 touch $lf
 read lastPID < $lf
-echo "$lastPID"
 [ ! -z "$lastPID" -a -d /proc/$lastPID ] && exit 1
 
 # Start of the backups
 cd ~/openRsyncBackupScripts/config/clients
 
 for file in `dir -d *` ; do
-	echo "Back up ${file} started"
+	logger "Back up ${file} started"
 
 	# CLEAR THE VARIABLES
 	unset REMOTE_USER
@@ -51,11 +50,10 @@ for file in `dir -d *` ; do
 		# Perform the backup
 		${RSYNC} -azv -e ${SSH} ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_PATH} ${LOCAL_PATH}${REMOTE_PATH}/../
 	else
-		echo "Client file variables incorrectly set, not backing up"
+		logger "Client file variables incorrectly set, not backing up"
         fi
 
-	echo "Back up ${file} finished"
-	echo ""
+	logger "Back up ${file} finished"
 done
 
 exit 0
