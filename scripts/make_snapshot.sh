@@ -5,6 +5,7 @@ unset PATH	# Unset the path for security
 # ------------- system commands used by this script --------------------
 ID=/usr/bin/id;
 ECHO=/bin/echo;
+LOGGER=/usr/bin/logger;
 MOUNT=/bin/mount;
 RM=/bin/rm;
 MV=/bin/mv;
@@ -18,6 +19,8 @@ SNAPSHOT_RW=/root/backups/snapshot;
 BACKUP_RW=/root/backups/backup;
 
 # ------------- the script itself --------------------------------------
+$LOGGER "$0 running"
+
 # make sure we're running as root
 if (( `$ID -u` != 0 )); then { $ECHO "Sorry, must be root.  Exiting..."; exit 1; } fi
 
@@ -59,5 +62,6 @@ if [ -d $SNAPSHOT_RW/hourly/hourly.0 ] ; then                   \
 	$TOUCH $SNAPSHOT_RW/hourly/hourly.0 ;	\
 fi;
 
+$LOGGER "$0 done"
 exit 0
 
