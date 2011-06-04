@@ -1,0 +1,32 @@
+#
+# 1
+#
+
+Corrupted MAC on input.
+Disconnecting: Packet corrupt
+rsync: connection unexpectedly closed (37632825484 bytes received so far) [receiver]
+rsync error: error in rsync protocol data stream (code 12) at io.c(601) [receiver=3.0.7]
+rsync: connection unexpectedly closed (2517 bytes received so far) [generator]
+rsync error: unexplained error (code 255) at io.c(601) [generator=3.0.7]
+receiving incremental file list
+rsync: send_files failed to open "/home/tsmith/.viminfo": Permission denied (13)
+
+Number of files: 8864
+Number of files transferred: 0
+Total file size: 22.01G bytes
+Total transferred file size: 0 bytes
+Literal data: 0 bytes
+Matched data: 0 bytes
+File list size: 215.66K
+File list generation time: 0.001 seconds
+File list transfer time: 0.000 seconds
+Total bytes sent: 1.90K
+Total bytes received: 223.12K
+
+sent 1.90K bytes  received 223.12K bytes  64.29K bytes/sec
+total size is 22.01G  speedup is 97797.68
+rsync error: some files/attrs were not transferred (see previous errors) (code 23) at main.c(1526) [generator=3.0.7]
+
+#
+# 2
+#
