@@ -29,7 +29,7 @@ $LOGGER "$0 started"
 cd ~/openRsyncBackupScripts/config/clients
 
 for file in `dir -d *` ; do
-	logger "Back up ${file} started"
+	$LOGGER "Back up ${file} started"
 
 	# CLEAR THE VARIABLES
 	unset REMOTE_USER
@@ -54,12 +54,12 @@ for file in `dir -d *` ; do
 
 		if [ 0 == $? ]
 		then
-			logger "Back up ${file} succeeded"
+			$LOGGER "Back up ${file} succeeded"
 		else
-			logger "Back up ${file} failed"
+			$LOGGER "Back up ${file} failed, rsync exited with $?"
 		fi
 	else
-		logger "Client file variables incorrectly set, not backing up"
+		$LOGGER "Client file variables incorrectly set, not backing up"
         fi
 
 done
