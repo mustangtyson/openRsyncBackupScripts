@@ -51,11 +51,17 @@ for file in `dir -d *` ; do
 
 		# Perform the backup
 		${RSYNC} -avzh --delete --stats -e ${SSH} ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_PATH} ${LOCAL_PATH}${REMOTE_PATH}/../
+
+		if [ 0 == $? ]
+		then
+			logger "Back up ${file} succeeded"
+		else
+			logger "Back up ${file} failed"
+		fi
 	else
 		logger "Client file variables incorrectly set, not backing up"
         fi
 
-	logger "Back up ${file} finished"
 done
 
 $LOGGER "$0 done"
