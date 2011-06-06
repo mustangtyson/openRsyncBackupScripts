@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # TODO Overall ideas
-# * log everything to /var/log/messages
+# * log everything to /var/log/messages and echo
 # * add the ability to limit bandwith per client (lan, wifi, internet)
 
 
@@ -33,6 +33,8 @@ for file in `dir -d *` ; do
 	unset REMOTE_HOST
 	unset REMOTE_PATH
 	unset EXCLUDE_PATH
+	unset BWLIMIT
+	unset BANDWITH_OPT
 
 	# Import the files variables
 	. ${file}
@@ -46,8 +48,14 @@ for file in `dir -d *` ; do
 		# Make sure the dir to backup to exists
 		${MKDIR} -p ${LOCAL_PATH}${REMOTE_PATH}
 
+		# Set the bandwith limit
+		if [ ! -z ${BWLIMIT} ]
+		then
+			BANDWITH_OPT="--bwlimit=${BWLIMIT}"
+		fi
+
 		# Perform the backup
-		${RSYNC} -avzh --delete --stats -e ${SSH} ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_PATH} ${LOCAL_PATH}${REMOTE_PATH}/../
+		${RSYNC} -avzh --delete ${BANDWITH_OPT} --stats -e ${SSH} ${REMOTE_USER}@${REMOTE_HOST}:${REMOTE_PATH} ${LOCAL_PATH}${REMOTE_PATH}/../
 
 		if [ 0 == $? ]
 		then

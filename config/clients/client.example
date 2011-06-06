@@ -5,3 +5,4 @@
 #REMOTE_HOST=myhostname
 #REMOTE_PATH=/home
 #EXCLUDE_PATH=/dev
+#BWLIMIT="50"
