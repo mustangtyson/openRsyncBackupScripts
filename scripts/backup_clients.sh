@@ -5,6 +5,7 @@
 # * add the ability to limit bandwith per client (lan, wifi, internet)
 
 
+source ./OrbUtils.sh
 
 # System executables
 RSYNC=/usr/bin/rsync;
@@ -12,17 +13,14 @@ SSH=/usr/bin/ssh;
 MKDIR=/bin/mkdir;
 LOGGER=/usr/bin/logger;
 
-# Lock file to make sure that the script is not running more than once.
-lf=/tmp/openRsyncBackupScriptsPidLockFile
-
 # User editable variables
-BACKUP_DIR=/root/backups/backup #TODO You must set this to your backup path (This should be in a config file
+BACKUP_DIR=/root/backups/backup; #TODO You must set this to your backup path (This should be in a config file
 
 
 # Make sure that we are not already running
-touch $lf
-read lastPID < $lf
-[ ! -z "$lastPID" -a -d /proc/$lastPID ] && exit 1
+testIfAlreadyRunning
+
+
 $LOGGER "$0 started"
 
 # Start of the backups
