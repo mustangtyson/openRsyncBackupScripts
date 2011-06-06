@@ -1,6 +1,6 @@
 #!/bin/bash
 
-unset PATH	# Unset the path for security
+source ./OrbUtils.sh
 
 # ------------- system commands used by this script --------------------
 ID=/usr/bin/id;
@@ -18,6 +18,10 @@ MKDIR=/bin/mkdir;
 SNAPSHOT_RW=/root/backups/snapshot;
 
 # ------------- the script itself --------------------------------------
+
+# Make sure that we are not already running
+testIfAlreadyRunning
+
 $LOGGER "$0 started"
 
 # make sure we're running as root

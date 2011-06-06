@@ -1,6 +1,6 @@
 #!/bin/bash
 
-unset PATH	# Unset the path for security
+source ./OrbUtils.sh
 
 # ------------- system commands used by this script --------------------
 ID=/usr/bin/id;
@@ -19,6 +19,9 @@ SNAPSHOT_RW=/root/backups/snapshot;
 
 # ------------- the script itself --------------------------------------
 $LOGGER "$0 started"
+
+# Make sure that we are not already running
+testIfAlreadyRunning
 
 # make sure we're running as root
 if (( `$ID -u` != 0 )); then { $LOGGER "Sorry, must be root.  Exiting..."; exit 1; } fi

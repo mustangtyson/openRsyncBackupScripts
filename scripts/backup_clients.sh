@@ -20,7 +20,6 @@ BACKUP_DIR=/root/backups/backup; #TODO You must set this to your backup path (Th
 # Make sure that we are not already running
 testIfAlreadyRunning
 
-
 $LOGGER "$0 started"
 
 # Start of the backups
