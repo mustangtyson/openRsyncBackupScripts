@@ -12,7 +12,7 @@ MV=/bin/mv;
 CP=/bin/cp;
 TOUCH=/bin/touch;
 RSYNC=/usr/bin/rsync;
-MKDIR=/bin/mkdir
+MKDIR=/bin/mkdir;
 
 # ------------- file locations -----------------------------------------
 SNAPSHOT_RW=/root/backups/snapshot;
