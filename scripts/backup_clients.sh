@@ -6,16 +6,13 @@
 
 
 source ./OrbUtils.sh
+source ../config/orbs.conf
 
 # System executables
 RSYNC=/usr/bin/rsync;
 SSH=/usr/bin/ssh;
 MKDIR=/bin/mkdir;
 LOGGER=/usr/bin/logger;
-
-# User editable variables
-BACKUP_DIR=/root/backups/backup; #TODO You must set this to your backup path (This should be in a config file
-
 
 # Make sure that we are not already running
 testIfAlreadyRunning
