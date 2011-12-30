@@ -20,7 +20,7 @@ testIfAlreadyRunning
 $LOGGER "$0 started"
 
 # Start of the backups
-cd ~/openRsyncBackupScripts/config/clients
+cd ../config/clients
 
 for file in `dir -d *` ; do
 	$LOGGER "Back up ${file} started"
