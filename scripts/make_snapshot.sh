@@ -53,6 +53,7 @@ $MKDIR -p $SNAPSHOT_RW/hourly/hourly.0;	\
 
 $RSYNC \
 	-a \
+	-v \
 	--delete \
         --link-dest=$SNAPSHOT_RW/hourly/hourly.1 \
 	${BACKUP_RW}/ \
