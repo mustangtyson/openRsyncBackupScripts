@@ -1,6 +1,7 @@
 #!/bin/bash
 
 source ./OrbUtils.sh
+source ../config/orbs.conf
 
 # ------------- system commands used by this script --------------------
 ID=/usr/bin/id;
@@ -13,10 +14,6 @@ CP=/bin/cp;
 TOUCH=/bin/touch;
 RSYNC=/usr/bin/rsync;
 MKDIR=/bin/mkdir;
-
-# ------------- file locations -----------------------------------------
-SNAPSHOT_RW=/root/backups/snapshot;
-BACKUP_RW=/root/backups/backup;
 
 # ------------- the script itself --------------------------------------
 
