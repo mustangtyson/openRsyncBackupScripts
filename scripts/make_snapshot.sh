@@ -49,7 +49,7 @@ fi;
 # rsync behaves like cp --remove-destination by default, so the destination
 # is unlinked first.  If it were not so, this would copy over the other
 # snapshot(s) too!
-$MKDIR -p $SNAPSHOT_RW/hourly/hourly.0;	\
+$MKDIR -p $SNAPSHOT_RW/hourly/hourly.0;
 
 $RSYNC \
 	-a \
