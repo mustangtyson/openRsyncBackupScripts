@@ -28,7 +28,7 @@ if (( `$ID -u` != 0 )); then { $LOGGER "Sorry, must be root.  Exiting..."; exit 
 # step 1: delete the oldest snapshot, if it exists:
 if [ -d $SNAPSHOT_RW/hourly/hourly.3 ] ; then			\
 	$RM -rf $SNAPSHOT_RW/hourly/hourly.3 ;				\
-fi ;
+fi;
 
 # step 2: shift the middle snapshots(s) back by one, if they exist
 if [ -d $SNAPSHOT_RW/hourly/hourly.2 ] ; then			\
