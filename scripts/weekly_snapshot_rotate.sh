@@ -21,6 +21,13 @@ $LOGGER "$0 started"
 # Make sure that we are not already running
 testIfAlreadyRunning
 
+# Sanity check configuration file variables
+if [ -z ${SNAPSHOT_RW} ]
+then
+        $LOGGER "SNAPSHOT_RW not set in config file, exiting"
+        exit 1
+fi
+
 # make sure we're running as root
 if (( `$ID -u` != 0 )); then { $LOGGER "Sorry, must be root.  Exiting..."; exit 1; } fi
 

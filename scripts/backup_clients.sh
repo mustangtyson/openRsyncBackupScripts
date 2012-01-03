@@ -17,9 +17,16 @@ LOGGER=/usr/bin/logger;
 # Make sure that we are not already running
 testIfAlreadyRunning
 
+# Start of the backups
 $LOGGER "$0 started"
 
-# Start of the backups
+# Sanity check configuration file variables
+if [ -z ${BACKUP_DIR} ]
+then
+	$LOGGER "BACKUP_DIR not set in config file, exiting"
+	exit 1
+fi
+
 cd ../config/clients
 
 for file in `dir -d *` ; do
