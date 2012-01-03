@@ -23,7 +23,7 @@ $LOGGER "$0 started"
 # Sanity check configuration file variables
 if [ -z ${BACKUP_DIR} ]
 then
-	$LOGGER "${0} BACKUP_DIR not set in config file, exiting"
+	$LOGGER "${0} BACKUP_DIR:${BACKUP_DIR} not set in config file, exiting"
 	exit 1
 fi
 
