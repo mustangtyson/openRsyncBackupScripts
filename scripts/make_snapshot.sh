@@ -25,13 +25,13 @@ $LOGGER "$0 started"
 # Sanity check configuration file variables
 if [ -z ${SNAPSHOT_RW} ]
 then
-        $LOGGER "SNAPSHOT_RW not set in config file, exiting"
+        $LOGGER "${0} SNAPSHOT_RW not set in config file, exiting"
         exit 1
 fi
 
 if [ -z ${BACKUP_RW} ]
 then
-        $LOGGER "BACKUP_RW not set in config file, exiting"
+        $LOGGER "${0} BACKUP_RW not set in config file, exiting"
         exit 1
 fi
 
