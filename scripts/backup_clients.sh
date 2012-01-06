@@ -4,21 +4,48 @@
 # * log everything to /var/log/messages and echo
 # * add the ability to limit bandwith per client (lan, wifi, internet)
 
-
-source ./OrbUtils.sh
-source ../config/orbs.conf
-
 # System executables
 RSYNC=/usr/bin/rsync;
 SSH=/usr/bin/ssh;
 MKDIR=/bin/mkdir;
 LOGGER=/usr/bin/logger;
+ORBS_UTILS="OrbUtils.sh"
+ORBS_CONF="orbs.conf"
+
+# Start of the backups
+$LOGGER "$0 started"
+
+# Get the dirrectory relative to this script
+BASE_SCRIPT_DIR="${0%/*}"
+
+# Get OrbsUtils full path
+ORBS_UTILS_FULL="${BASE_SCRIPT_DIR}/${ORBS_UTILS}"
+
+# Make sure our shared utils file exists
+if [ ! -f ${ORBS_UTILS_FULL} ]
+then
+	$LOGGER "Cant find ${ORBS_UTILS_FULL}, exiting"
+	exit 1
+fi
+
+# Source our shared utils file
+source ${ORBS_UTILS_FULL}
 
 # Make sure that we are not already running
 testIfAlreadyRunning
 
-# Start of the backups
-$LOGGER "$0 started"
+# Get config files full path
+ORBS_CONF_FULL="${BASE_SCRIPT_DIR}/../config/${ORBS_CONF}"
+
+# Make sure our config file exists
+if [ ! -f ${ORBS_CONF_FULL} ]
+then
+	$LOGGER "Cant find ${ORBS_CONF_FULL}, exiting"
+        exit 1
+fi
+
+# Find the location to backup clients to
+BACKUP_DIR=`grep 'BACKUP_DIR=' ${ORBS_CONF_FULL} | awk -F"=" '{print $2}'`
 
 # Sanity check configuration file variables
 if [ -z ${BACKUP_DIR} ]
@@ -27,7 +54,10 @@ then
 	exit 1
 fi
 
-cd ../config/clients
+# Get the base dir that the clients configuration files are stored under
+CLIENT_CONF_BASE="${BASE_SCRIPT_DIR}/../config/clients"
+
+cd ${CLIENT_CONF_BASE}
 
 for file in `dir -d *` ; do
 	$LOGGER "Back up ${file} started"
