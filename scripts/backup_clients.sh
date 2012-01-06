@@ -32,6 +32,7 @@ fi
 source ${ORBS_UTILS_FULL}
 
 # Make sure that we are not already running
+cd ${BASE_SCRIPT_DIR}
 testIfAlreadyRunning
 
 # Get config files full path
