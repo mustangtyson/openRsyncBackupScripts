@@ -9,7 +9,7 @@ RSYNC=/usr/bin/rsync;
 SSH=/usr/bin/ssh;
 MKDIR=/bin/mkdir;
 LOGGER=/usr/bin/logger;
-ORBS_UTILS="OrbUtils.sh"
+ORBS_UTILS="OrbsUtils.sh"
 ORBS_CONF="orbs.conf"
 
 # Start of the backups

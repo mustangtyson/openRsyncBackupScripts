@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ./OrbUtils.sh
+source ./OrbsUtils.sh
 source ../config/orbs.conf
 
 # ------------- system commands used by this script --------------------
