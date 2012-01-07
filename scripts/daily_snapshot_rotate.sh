@@ -99,7 +99,7 @@ fi;
 ${MKDIR} -p $SNAPSHOT_RW/daily
 ${CP} \
 	-al \
-	$SNAPSHOT_RW/hourly/hourly.3 \
+	$SNAPSHOT_RW/hourly/hourly.24 \
         $SNAPSHOT_RW/daily/daily.0 ;
 
 # step 5: update the mtime of daily.0 to reflect the snapshot time

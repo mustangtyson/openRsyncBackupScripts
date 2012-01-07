@@ -72,11 +72,95 @@ $LOGGER "Snapshoting To:${SNAPSHOT_RW}"
 if (( `$ID -u` != 0 )); then { $LOGGER "Sorry, must be root.  Exiting..."; exit 1; } fi
 
 # step 1: delete the oldest snapshot, if it exists:
-if [ -d $SNAPSHOT_RW/hourly/hourly.3 ] ; then			\
-	$RM -rf $SNAPSHOT_RW/hourly/hourly.3 ;				\
+if [ -d $SNAPSHOT_RW/hourly/hourly.24 ] ; then			\
+	$RM -rf $SNAPSHOT_RW/hourly/hourly.24 ;				\
 fi;
 
 # step 2: shift the middle snapshots(s) back by one, if they exist
+if [ -d $SNAPSHOT_RW/hourly/hourly.23 ] ; then			\
+	$MV $SNAPSHOT_RW/hourly/hourly.23 $SNAPSHOT_RW/hourly/hourly.24 ;	\
+fi;
+
+if [ -d $SNAPSHOT_RW/hourly/hourly.22 ] ; then			\
+	$MV $SNAPSHOT_RW/hourly/hourly.22 $SNAPSHOT_RW/hourly/hourly.23 ;	\
+fi;
+
+if [ -d $SNAPSHOT_RW/hourly/hourly.21 ] ; then			\
+	$MV $SNAPSHOT_RW/hourly/hourly.21 $SNAPSHOT_RW/hourly/hourly.22 ;	\
+fi;
+
+if [ -d $SNAPSHOT_RW/hourly/hourly.20 ] ; then			\
+	$MV $SNAPSHOT_RW/hourly/hourly.20 $SNAPSHOT_RW/hourly/hourly.21 ;	\
+fi;
+
+if [ -d $SNAPSHOT_RW/hourly/hourly.19 ] ; then			\
+	$MV $SNAPSHOT_RW/hourly/hourly.19 $SNAPSHOT_RW/hourly/hourly.20 ;	\
+fi;
+
+if [ -d $SNAPSHOT_RW/hourly/hourly.18 ] ; then			\
+	$MV $SNAPSHOT_RW/hourly/hourly.18 $SNAPSHOT_RW/hourly/hourly.19 ;	\
+fi;
+
+if [ -d $SNAPSHOT_RW/hourly/hourly.17 ] ; then			\
+	$MV $SNAPSHOT_RW/hourly/hourly.17 $SNAPSHOT_RW/hourly/hourly.18 ;	\
+fi;
+
+if [ -d $SNAPSHOT_RW/hourly/hourly.16 ] ; then			\
+	$MV $SNAPSHOT_RW/hourly/hourly.16 $SNAPSHOT_RW/hourly/hourly.17 ;	\
+fi;
+
+if [ -d $SNAPSHOT_RW/hourly/hourly.15 ] ; then			\
+	$MV $SNAPSHOT_RW/hourly/hourly.15 $SNAPSHOT_RW/hourly/hourly.16 ;	\
+fi;
+
+if [ -d $SNAPSHOT_RW/hourly/hourly.14 ] ; then			\
+	$MV $SNAPSHOT_RW/hourly/hourly.14 $SNAPSHOT_RW/hourly/hourly.15 ;	\
+fi;
+
+if [ -d $SNAPSHOT_RW/hourly/hourly.13 ] ; then			\
+	$MV $SNAPSHOT_RW/hourly/hourly.13 $SNAPSHOT_RW/hourly/hourly.14 ;	\
+fi;
+
+if [ -d $SNAPSHOT_RW/hourly/hourly.12 ] ; then			\
+	$MV $SNAPSHOT_RW/hourly/hourly.12 $SNAPSHOT_RW/hourly/hourly.13 ;	\
+fi;
+
+if [ -d $SNAPSHOT_RW/hourly/hourly.11 ] ; then			\
+	$MV $SNAPSHOT_RW/hourly/hourly.11 $SNAPSHOT_RW/hourly/hourly.12 ;	\
+fi;
+
+if [ -d $SNAPSHOT_RW/hourly/hourly.10 ] ; then			\
+	$MV $SNAPSHOT_RW/hourly/hourly.10 $SNAPSHOT_RW/hourly/hourly.11 ;	\
+fi;
+
+if [ -d $SNAPSHOT_RW/hourly/hourly.9 ] ; then			\
+	$MV $SNAPSHOT_RW/hourly/hourly.9 $SNAPSHOT_RW/hourly/hourly.10 ;	\
+fi;
+
+if [ -d $SNAPSHOT_RW/hourly/hourly.8 ] ; then			\
+	$MV $SNAPSHOT_RW/hourly/hourly.8 $SNAPSHOT_RW/hourly/hourly.9 ;	\
+fi;
+
+if [ -d $SNAPSHOT_RW/hourly/hourly.7 ] ; then			\
+	$MV $SNAPSHOT_RW/hourly/hourly.7 $SNAPSHOT_RW/hourly/hourly.8 ;	\
+fi;
+
+if [ -d $SNAPSHOT_RW/hourly/hourly.6 ] ; then			\
+	$MV $SNAPSHOT_RW/hourly/hourly.6 $SNAPSHOT_RW/hourly/hourly.7 ;	\
+fi;
+
+if [ -d $SNAPSHOT_RW/hourly/hourly.5 ] ; then			\
+	$MV $SNAPSHOT_RW/hourly/hourly.5 $SNAPSHOT_RW/hourly/hourly.6 ;	\
+fi;
+
+if [ -d $SNAPSHOT_RW/hourly/hourly.4 ] ; then			\
+	$MV $SNAPSHOT_RW/hourly/hourly.4 $SNAPSHOT_RW/hourly/hourly.5 ;	\
+fi;
+
+if [ -d $SNAPSHOT_RW/hourly/hourly.3 ] ; then			\
+	$MV $SNAPSHOT_RW/hourly/hourly.3 $SNAPSHOT_RW/hourly/hourly.4 ;	\
+fi;
+
 if [ -d $SNAPSHOT_RW/hourly/hourly.2 ] ; then			\
 	$MV $SNAPSHOT_RW/hourly/hourly.2 $SNAPSHOT_RW/hourly/hourly.3 ;	\
 fi;
