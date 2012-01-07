@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# TODO Overall ideas
-# * log everything to /var/log/messages and echo
-# * add the ability to limit bandwith per client (lan, wifi, internet)
-
 # System executables
 RSYNC=/usr/bin/rsync;
 SSH=/usr/bin/ssh;
