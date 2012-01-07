@@ -1,0 +1,47 @@
+################################################################################
+#                                                                              #
+#  OpenRsyncBackupScripts - README                                             #
+#                                                                              #
+################################################################################
+
+
+Requirements:
+*Linux/Unix/BSD
+*git
+*rsync
+*ssh
+*root access
+
+
+Steps to install:
+1) Become root:
+	sudo su -
+
+2) Navigate to the root directory:
+	cd ~
+
+3) Pull the latest tagged stable branch
+	git clone -b SOMETHING git://github.com/mustangtyson/openRsyncBackupScripts.git
+
+4) Configure the backup and snapshot directories:
+	vi openRsyncBackupScripts/config/orbs.conf
+
+5) Configure the clients to be backed up:
+	cd openRsyncBackupScripts/conf/clients
+	cp client.example MYUSER@MYHOST.MYDOMAIN
+	vi MYUSER@MYHOST.MYDOMAIN
+	Make changes and comment in the lines.
+
+6) Install servers public key to clients:
+	ssh-copy-id MYUSER@MYHOST.MYDOMAIN
+
+7) Test the client backup:
+	~/openRsyncBackupScripts/scripts/backup_clients.sh
+
+8) Test the snapshot:
+	~/openRsyncBackupScripts/scripts/make_snapshot.sh
+
+9) Setup this as a root cron job:
+	cat openRsyncBackupScripts/examples/crontab.example
+
+10) Congradulations you are done!
